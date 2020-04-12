@@ -12,16 +12,14 @@ const Task = () => {
     <div>
       {!taskState.editing ? (
         <>
-          <h1>
-            {taskState.title}
-            <p
-              onClick={() => dispatch({ type: "TOGGLE_EDITING" })}
-              className="icon"
-            >
-              Edit
-            </p>
-          </h1>
+          <h1>{taskState.title}</h1>
           <p>{taskState.text}</p>
+          <p
+            onClick={() => dispatch({ type: "TOGGLE_EDITING" })}
+            className="icon"
+          >
+            EDIT
+          </p>
         </>
       ) : (
         <>

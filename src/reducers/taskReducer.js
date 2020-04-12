@@ -42,13 +42,13 @@ export const taskReducer = (state, action) => {
       return {
         ...state,
         title: action.payload,
-        editing: false,
+        editing: !false,
       };
     case "UPDATE_TASK_TEXT":
       return {
         ...state,
-        text: action.paylod,
-        editing: false,
+        text: action.payload,
+        editing: !false,
       };
     default:
       return state;
