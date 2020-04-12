@@ -12,21 +12,45 @@ export const initialTaskState = {
 };
 
 export const taskReducer = (state, action) => {
-  if (action.type === "TOGGLE_EDITING") {
-    return {
-      ...state,
-      editing: !state.editing,
-    };
-  } else if (action.type === "UPDATE_TITLE") {
-    return {
-      ...state,
-      title: action.payload,
-    };
-  } else if (action.type === "UPDATE_TASK_TEXT") {
-    return {
-      ...state,
-      text: action.payload,
-    };
+  //   if (action.type === "TOGGLE_EDITING") {
+  //     return {
+  //       ...state,
+  //       editing: !state.editing,
+  //     };
+  //   } else if (action.type === "UPDATE_TITLE") {
+  //     return {
+  //       ...state,
+  //       title: action.payload,
+  //       editing: false,
+  //     };
+  //   } else if (action.type === "UPDATE_TASK_TEXT") {
+  //     return {
+  //       ...state,
+  //       text: action.payload,
+  //       editing: false,
+  //     };
+  //   }
+  // return state;
+
+  switch (action.type) {
+    case "TOGGLE_EDITING":
+      return {
+        ...state,
+        editing: !state.editing,
+      };
+    case "UPDATE_TITLE":
+      return {
+        ...state,
+        title: action.payload,
+        editing: false,
+      };
+    case "UPDATE_TASK_TEXT":
+      return {
+        ...state,
+        text: action.paylod,
+        editing: false,
+      };
+    default:
+      return state;
   }
-  return state;
 };
