@@ -6,9 +6,13 @@
 // action - object that has a type key and may have a payload
 
 export const initialTaskState = {
-  title: "title from reducer",
-  text: "text from reducer",
-  editing: false,
+  tasks: [
+    {
+      item: "Item from reducer",
+      completed: false,
+      id: Math.ceil(Math.random() * 100000),
+    },
+  ],
 };
 
 export const taskReducer = (state, action) => {
@@ -38,17 +42,17 @@ export const taskReducer = (state, action) => {
         ...state,
         editing: !state.editing,
       };
-    case "UPDATE_TITLE":
+    case "ADD_TASK":
       return {
-        ...state,
-        title: action.payload,
-        editing: !false,
-      };
-    case "UPDATE_TASK_TEXT":
-      return {
-        ...state,
-        text: action.payload,
-        editing: !false,
+        tasks: [
+          ...state.tasks,
+          {
+            item: action.payload,
+            completed: false,
+            id: Math.ceil(Math.random() * 100000),
+          },
+        ],
+        editing: state.editing,
       };
     default:
       return state;

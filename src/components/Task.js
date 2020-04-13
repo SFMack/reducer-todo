@@ -5,21 +5,25 @@ import { taskReducer, initialTaskState } from "../reducers/taskReducer";
 const Task = () => {
   const [taskState, dispatch] = useReducer(taskReducer, initialTaskState);
 
-  const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [newTaskText, setNewTaskText] = useState("");
+  const [newTask, setNewTask] = useState("");
 
   return (
     <div>
       {!taskState.editing ? (
         <>
-          <h1>{taskState.title}</h1>
-          <p>{taskState.text}</p>
           <p
             onClick={() => dispatch({ type: "TOGGLE_EDITING" })}
             className="icon"
           >
-            EDIT
+            Add Task
           </p>
+          <div>
+            {taskState.tasks.map((item) => (
+              <div key={item.id}>
+                <h4>{item.item}</h4>
+              </div>
+            ))}
+          </div>
         </>
       ) : (
         <>
@@ -27,25 +31,17 @@ const Task = () => {
             <input
               className="title-input"
               type="text"
-              name="newTaskTitle"
-              value={newTaskTitle}
-              onChange={(e) => setNewTaskTitle(e.target.value)}
-            />
-            <input
-              className="text-input"
-              type="text"
-              name="newTaskText"
-              value={newTaskText}
-              onChange={(e) => setNewTaskText(e.target.value)}
+              name="newTask"
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
             />
             <button
               onClick={() => {
-                dispatch({ type: "UPDATE_TITLE", payload: newTaskTitle });
-                dispatch({ type: "UPDATE_TASK_TEXT", payload: newTaskText });
+                dispatch({ type: "ADD_TASK", payload: newTask });
                 dispatch({ type: "TOGGLE_EDITING" });
               }}
             >
-              Add Task
+              Submit
             </button>
             <button
               onClick={() => {
