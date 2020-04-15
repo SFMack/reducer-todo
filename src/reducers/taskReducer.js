@@ -15,32 +15,18 @@ export const initialTaskState = {
   ],
 };
 
-export const taskReducer = (state, action) => {
-  //   if (action.type === "TOGGLE_EDITING") {
-  //     return {
-  //       ...state,
-  //       editing: !state.editing,
-  //     };
-  //   } else if (action.type === "UPDATE_TITLE") {
-  //     return {
-  //       ...state,
-  //       title: action.payload,
-  //       editing: false,
-  //     };
-  //   } else if (action.type === "UPDATE_TASK_TEXT") {
-  //     return {
-  //       ...state,
-  //       text: action.payload,
-  //       editing: false,
-  //     };
-  //   }
-  // return state;
-
+export const taskReducer = (state = initialTaskState, action) => {
   switch (action.type) {
     case "TOGGLE_EDITING":
       return {
         ...state,
         editing: !state.editing,
+      };
+    case "TOGGLE_COMPLETE":
+      console.log(state);
+      return {
+        ...state,
+        tasks: [...state.tasks],
       };
     case "ADD_TASK":
       return {

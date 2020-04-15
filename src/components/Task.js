@@ -20,7 +20,14 @@ const Task = () => {
           <div>
             {taskState.tasks.map((item) => (
               <div key={item.id}>
-                <h4>{item.item}</h4>
+                <h4
+                  onClick={() =>
+                    dispatch({ type: "TOGGLE_COMPLETE", payload: item.id })
+                  }
+                  id={item.id}
+                >
+                  {item.item}
+                </h4>
               </div>
             ))}
           </div>
